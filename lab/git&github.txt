@@ -1,0 +1,134 @@
+What is Git?
+	Software that tracks and manages changes on a set of files and resources.
+First, Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots. This is an important concept. I file not change git does not store anything.
+
+
+
+
+Setup
+1- Download Git 
+https://git-scm.com/
+2- Setup Name and Email
+$ git config --global user.name "Your Name"
+$ git config --global user.email "your_email@whatever.com"
+
+3- show sitting :
+$ git config --list --show-origin
+
+
+Create a Project
+$ mkdir dirname
+$ cd dirname
+$ touch filename
+
+Create the Repository
+Repository: a virtual storage of your project.
+$ git init
+ this will create a (hidden) folder .git where all versioning files are stored.
+
+git has three areas for a local git project/repository:
+1. working area (i.e. working directory) 
+2. staging area 
+3. git area (i.e. git directory/repository) 
+
+
+Add to repository:
+to add files to the staging area :
+$ git add . || git add filename
+After you staged all your files, you can create a commit
+$ git commit -m “your commit”
+
+Check the status of the repository
+$ git status
+
+
+Un staging file :
+To remove a file from the staging area, use
+$ git reset -- file
+
+
+remove a file
+There are two options to remove a file:
+	1. $ git rm file
+ 2.$  rm file && git add file 
+
+.gitignore
+create in dir of repository a file .gitignore with a glob pattern on each line to ignore certain files in this directory
+History
+$ git log
+$git log --pretty=oneline
+$git log --pretty=oneline --author=<your name>
+
+undo commit:
+To undo a commit there are two options: 
+$ git revert 
+creates a new commit which reverts changes
+$ git reset [--hard] commit
+
+
+GitHub
+Create a private repo using the plus button on the top right corner.
+two way :
+1- 
+$ git remote add origin https://github.com/xxx/yyy.git
+$ git push -u origin maste
+2- 
+$ git clone
+$ git push
+
+
+
+
+
+
+
+
+
+Branch :
+can create a new branch :
+$ git branch branch_name 
+Switch branches:
+$ git checkout branch 
+creat and switch branches :
+$ git checkout -b branch_name
+list existing branches:
+$ git branch
+delete a branch:
+$ git branch -d branch_name
+
+
+
+
+Bringing tow branches together :
+ to join two branches git provides two mechanisms:
+1- git merge : Merge creates a new merge commit
+2- git rebase : changes on top of the branch to rebase on
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+to merge a branch feature into a branch master do:
+$ git checkout master   # go to master branch
+$ git merge feature         # merge feature into master
+OR
+$ git merge master feature
+
+We have 3 options to resolve a merge conflict: 
+1. take the version of feature git checkout --theirs file 
+2. take the version of master git checkout --ours file 
+3. manually create a merged 
+
+note / always before push to your branch mack sure that you have newest version of master branch  to avoid conflict :
+ $ git fetch
+ $ git pull origin master
